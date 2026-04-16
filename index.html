@@ -30,7 +30,26 @@
                 <div class="card-header-custom">Dashboard</div>
                 <div class="card-body-custom">
                     <h5 class="color-a">Ecco la panoramica delle tue spese!</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, earum repellendus. Similique saepe dignissimos error quisquam tempore minus eum laboriosam consequatur dolorem, quaerat necessitatibus iusto ipsam inventore earum officiis ullam.</p>
+                    <div class="row mx-auto">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <h6>Totale Spese</h6>
+                                <p class="fw-bold fs-4 color-a" id="totale-spese">€ 0.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Numero di Spese</h6>
+                                <p class="fw-bold fs-4 color-a" id="numero-spese">0</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Spese per Categoria</h6>
+                            <div id="riepilogo-categorie">
+                                <!-- Qui verranno inserite le categorie dinamicamente -->
+                            </div>                            <div class="mt-3">
+                                <h6>Spese Visibili</h6>
+                                <p class="fw-bold fs-5 color-a" id="spese-visibili">0 spese filtrate - € 0.00</p>
+                            </div>                        </div>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -59,11 +78,11 @@
                         <label for="categoria" class="form-label">Categoria</label>
                         <select class="form-select" id="categoria">
                             <option value="" selected>Seleziona una categoria</option>
-                            <option value="alimentari">Alimentari</option>
-                            <option value="trasporti">Trasporti</option>
-                            <option value="intrattenimento">Intrattenimento</option>
-                            <option value="bollette">Bollette</option>
-                            <option value="altro">Altro</option>
+                            <option value="Alimentari">Alimentari</option>
+                            <option value="Trasporti">Trasporti</option>
+                            <option value="Intrattenimento">Intrattenimento</option>
+                            <option value="Bollette">Bollette</option>
+                            <option value="Altro">Altro</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -82,6 +101,28 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="color-a py-5 text-center">Le tue spese</h2>
+            </div>
+        </div>
+        <!-- CONTROLLI FILTRO E RICERCA -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="filtro-categoria" class="form-label">Filtra per Categoria</label>
+                        <select class="form-select" id="filtro-categoria">
+                            <option value="">Tutte le categorie</option>
+                            <option value="Alimentari">Alimentari</option>
+                            <option value="Trasporti">Trasporti</option>
+                            <option value="Intrattenimento">Intrattenimento</option>
+                            <option value="Bollette">Bollette</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ricerca-descrizione" class="form-label">Cerca per Descrizione</label>
+                        <input type="text" class="form-control" id="ricerca-descrizione" placeholder="Inserisci testo da cercare...">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="table-responsive p-4 m-0">

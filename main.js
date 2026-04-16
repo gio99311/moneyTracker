@@ -1,12 +1,20 @@
 const spese = [
     {"id": 1, "descrizione": "Spesa al supermercato", "importo": 50.00, "categoria": "Alimentari", "data": "2024-06-01"},
-    {"id": 2, "descrizione": "Abbonamento mensile palestra", "importo": 30.00, "categoria": "Salute", "data": "2024-06-05"},
-    {"id": 3, "descrizione": "Cena fuori con amici", "importo": 80.00, "categoria": "Divertimento", "data": "2024-06-10"}
+    {"id": 2, "descrizione": "Abbonamento mensile palestra", "importo": 30.00, "categoria": "Intrattenimento", "data": "2024-06-05"},
+    {"id": 3, "descrizione": "Bolletta Luce", "importo": 80.00, "categoria": "Bollette", "data": "2024-06-10"}
 ];
 
 let editingId = null; //necessario per capire se il form è in modalità modifica o aggiunta
 const form = document.getElementById('form-spese');
 const submitButton = form.querySelector('button[type="submit"]');
+
+// Controlli per filtro e ricerca
+const filtroCategoria = document.getElementById('filtro-categoria');
+const ricercaDescrizione = document.getElementById('ricerca-descrizione');
+
+// Event listeners per i filtri
+filtroCategoria.addEventListener('change', aggiornaTabella);
+ricercaDescrizione.addEventListener('input', aggiornaTabella);
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -52,23 +60,92 @@ form.addEventListener('submit', function(e) {
 function aggiornaTabella() {
     const corpoTabella = document.getElementById('lista-spese-corpo');
     corpoTabella.innerHTML = '';
-    spese.forEach(spesa => {
+
+    // Ottieni i valori dei filtri
+    const categoriaFiltro = filtroCategoria.value;
+    const descrizioneRicerca = ricercaDescrizione.value.toLowerCase().trim();
+
+    // Filtra le spese
+    const speseFiltrate = spese.filter(spesa => {
+        // Filtro per categoria
+        const matchCategoria = !categoriaFiltro || spesa.categoria === categoriaFiltro;
+
+        // Ricerca per descrizione
+        const matchDescrizione = !descrizioneRicerca ||
+            spesa.descrizione.toLowerCase().includes(descrizioneRicerca);
+
+        return matchCategoria && matchDescrizione;
+    });
+
+    // Mostra le spese filtrate o messaggio se nessuna
+    if (speseFiltrate.length === 0) {
         const riga = document.createElement('tr');
         riga.innerHTML = `
-            <td>${new Date(spesa.data).toLocaleDateString()}</td>
-            <td>${spesa.descrizione}</td>
-            <td><span class="badge bg-info text-dark">${spesa.categoria}</span></td>
-            <td class="fw-bold">€ ${spesa.importo.toFixed(2)}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-outline-primary me-2" onclick="modificaSpesa(${spesa.id})" title="Modifica">
-                    <i class="bi bi-pencil color-s bg-white"></i>
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-danger" onclick="rimuoviSpesa(${spesa.id})" title="Elimina">
-                    <i class="bi bi-trash3 text-danger bg-white"></i>
-                </button>
+            <td colspan="5" class="text-center text-muted py-4">
+                <i class="bi bi-search me-2 bg-transparent color-s"></i>
+                Nessuna spesa trovata con i filtri applicati.
             </td>
         `;
         corpoTabella.appendChild(riga);
+    } else {
+        speseFiltrate.forEach(spesa => {
+            const riga = document.createElement('tr');
+            riga.innerHTML = `
+                <td>${new Date(spesa.data).toLocaleDateString()}</td>
+                <td>${spesa.descrizione}</td>
+                <td><span class="badge bg-info text-dark">${spesa.categoria}</span></td>
+                <td class="fw-bold">€ ${spesa.importo.toFixed(2)}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline-primary me-2" onclick="modificaSpesa(${spesa.id})" title="Modifica">
+                        <i class="bi bi-pencil color-s bg-transparent"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="rimuoviSpesa(${spesa.id})" title="Elimina">
+                        <i class="bi bi-trash3 text-danger bg-transparent"></i>
+                    </button>
+                </td>
+            `;
+            corpoTabella.appendChild(riga);
+        });
+    }
+
+    // Calcola e mostra il totale delle spese filtrate
+    const totaleFiltrato = speseFiltrate.reduce((sum, spesa) => sum + spesa.importo, 0);
+    document.getElementById('spese-visibili').textContent = `${speseFiltrate.length} spese filtrate - € ${totaleFiltrato.toFixed(2)}`;
+
+    // Aggiorna la dashboard con tutte le spese (non filtrate)
+    aggiornaDashboard();
+}
+
+// Funzione per aggiornare la dashboard con il riepilogo
+function aggiornaDashboard() {
+    // Calcola totale spese
+    const totale = spese.reduce((sum, spesa) => sum + spesa.importo, 0);
+    document.getElementById('totale-spese').textContent = `€ ${totale.toFixed(2)}`;
+
+    // Numero di spese
+    document.getElementById('numero-spese').textContent = spese.length;
+
+    // Riepilogo per categorie
+    const categorie = {};
+    spese.forEach(spesa => {
+        if (!categorie[spesa.categoria]) {
+            categorie[spesa.categoria] = { conteggio: 0, totale: 0 };
+        }
+        categorie[spesa.categoria].conteggio++;
+        categorie[spesa.categoria].totale += spesa.importo;
+    });
+
+    const riepilogoContainer = document.getElementById('riepilogo-categorie');
+    riepilogoContainer.innerHTML = '';
+
+    Object.keys(categorie).forEach(categoria => {
+        const div = document.createElement('div');
+        div.className = 'mb-2';
+        div.innerHTML = `
+            <span class="badge bg-secondary me-2">${categoria}</span>
+            <small>${categorie[categoria].conteggio} spese - € ${categorie[categoria].totale.toFixed(2)}</small>
+        `;
+        riepilogoContainer.appendChild(div);
     });
 }
 
@@ -91,3 +168,6 @@ function rimuoviSpesa(id) {
     spese.splice(spese.findIndex(spesa => spesa.id === id), 1);
     aggiornaTabella();
 }
+
+// Inizializza la tabella e la dashboard al caricamento della pagina
+aggiornaTabella();
