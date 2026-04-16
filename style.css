@@ -4,3 +4,53 @@
     --color-a: #A0EADE;
     --color-t: #F9F9ED;
 }
+
+.color-s{
+    color: var(--color-s);
+}
+.color-a{
+    color: var(--color-a);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    background-color: var(--color-p);
+    color: var(--color-t);
+    
+}
+
+.title{
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0px 3px 3px var(--color-a);
+}
+
+/* CARD */
+.card-custom{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-p);
+    border: 1px solid var(--color-s);
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px var(--color-s);
+    box-sizing: border-box;
+
+}
+.card-header-custom{
+    background-color: var(--color-s);
+    border-radius: 20px 20px 0 0;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: large;
+    
+
+}
+.card-body-custom{
+    border-radius: 0 0 20px 20px;
+    padding: 10px;
+}
