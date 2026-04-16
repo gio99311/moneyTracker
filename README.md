@@ -34,11 +34,36 @@ Un'applicazione web moderna per tracciare e gestire le tue spese personali. Mone
 - **Typography**: Font Google "Lexend"
 - **Componenti**: Card arrotondate, pulsanti outline, badge colorati
 
-## 🚀 Come Utilizzare
+## 📸 Screenshot - Web
 
-### Prerequisiti
-- Browser web moderno (Chrome, Firefox, Safari, Edge)
-- Connessione internet per caricare Bootstrap e Google Fonts
+### Dashboard e Form Principale
+![Dashboard](screenshot/Screenshot%202026-04-16%20125810.png)
+*Vista principale con dashboard interattiva e form di inserimento*
+
+### Tabella Desktop con Filtri
+![Tabella Desktop](screenshot/Screenshot%202026-04-16%20125831.png)
+*Visualizzazione tabella completa su desktop con controlli filtro*
+
+### Ricerca e Filtro Attivi
+![Ricerca Filtro](screenshot/Screenshot%202026-04-16%20125940.png)
+*Esempio di ricerca per descrizione e filtro per categoria*
+
+## 📸 Screenshot - Mobile
+
+### Dashboard Mobile
+![Mobile Card](screenshot/Screenshot%202026-04-16%20130352.png)
+*Vista mobile con card responsive senza scroll laterale*
+
+### Aggiungi/Modifica nuova spesa
+![Dashboard Mobile](screenshot/Screenshot%202026-04-16%20130401.png)
+*Dashboard ottimizzata per dispositivi mobili*
+
+### Visualizzazione delle spese e filtri
+![Modifica](screenshot/Screenshot%202026-04-16%20125953.png)
+*Modalità modifica con form pre-compilato*
+
+
+## 🚀 Come Utilizzare
 
 ### Installazione
 1. **Clona o scarica** i file del progetto
@@ -82,16 +107,7 @@ money-tracker/
 
 ### Responsive Design
 - **Breakpoint**: 768px (Bootstrap md)
-- **Visualizzazione condizionale**: classi `d-none d-md-block` / `d-md-none`
 - **Card mobile**: layout verticale ottimizzato per touch
-
-## 🎯 Funzionalità Richieste Implementate
-
-✅ **Filtro per categoria** - Dropdown per filtrare spese per categoria
-✅ **Ricerca per descrizione** - Campo input per ricerca testuale
-✅ **Dashboard interattiva** - Riepilogo dinamico delle spese
-✅ **Design responsive** - Ottimizzato per desktop e mobile
-
 
 ## 👨‍💻 Autore
 
@@ -100,3 +116,8 @@ Sviluppato per la gestione finanziaria personale.
 ---
 
 **Money Tracker** - Tieni traccia delle tue spese in modo semplice ed efficace! 🚀
+
+## Screenshot - Web
+![Foto](screenshot)
+
+## Screenshot - Mobile
