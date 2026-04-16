@@ -16,17 +16,6 @@ Un'applicazione web moderna per tracciare e gestire le tue spese personali. Mone
 - **Eliminazione** delle spese
 - **Validazione** automatica dei dati inseriti
 
-### 🔍 Filtri e Ricerca
-- **Filtro per categoria** (Alimentari, Trasporti, Intrattenimento, Bollette, Altro)
-- **Ricerca per descrizione** con ricerca case-insensitive
-- **Combinazione filtri** per risultati precisi
-
-### 📱 Design Responsive
-- **Desktop**: Tabella completa con tutte le colonne
-- **Mobile**: Card verticali ottimizzate per touch
-- **Layout adattivo** che si adatta a tutte le dimensioni schermo
-- **Zero scroll laterale** su dispositivi mobili
-
 ## 🛠️ Tecnologie Utilizzate
 
 - **HTML5** - Struttura semantica
@@ -96,40 +85,17 @@ money-tracker/
 - **Visualizzazione condizionale**: classi `d-none d-md-block` / `d-md-none`
 - **Card mobile**: layout verticale ottimizzato per touch
 
-### Filtri Avanzati
-- **Filtro categoria**: select con valori predefiniti
-- **Ricerca descrizione**: input con ricerca parziale case-insensitive
-- **Aggiornamento automatico**: risultati istantanei al cambio filtri
-
 ## 🎯 Funzionalità Richieste Implementate
 
 ✅ **Filtro per categoria** - Dropdown per filtrare spese per categoria
 ✅ **Ricerca per descrizione** - Campo input per ricerca testuale
 ✅ **Dashboard interattiva** - Riepilogo dinamico delle spese
-✅ **CRUD completo** - Create, Read, Update, Delete spese
 ✅ **Design responsive** - Ottimizzato per desktop e mobile
 
-## 🔮 Possibili Miglioramenti Futuri
-
-- **Persistenza dati**: LocalStorage o database
-- **Esportazione**: CSV/PDF dei dati
-- **Grafici**: Chart.js per visualizzazioni avanzate
-- **Categorie personalizzate**: Aggiunta dinamica categorie
-- **Ricerca avanzata**: Filtri per data, importo range
-- **Tema switcher**: Chiaro/scuro
-- **PWA**: Installabile come app mobile
-
-## 📝 Note di Sviluppo
-
-- **Architettura**: MVC semplice con separazione HTML/CSS/JS
-- **Performance**: Aggiornamenti DOM efficienti
-- **Accessibilità**: Labels, titoli, colori contrastanti
-- **Browser support**: Moderni browser con ES6 support
-- **Codice pulito**: Commenti, funzioni modulari, nomi significativi
 
 ## 👨‍💻 Autore
 
-Sviluppato con ❤️ per la gestione finanziaria personale.
+Sviluppato per la gestione finanziaria personale.
 
 ---
 
