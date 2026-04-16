@@ -59,7 +59,10 @@ form.addEventListener('submit', function(e) {
 // Funzione per visualizzare le spese
 function aggiornaTabella() {
     const corpoTabella = document.getElementById('lista-spese-corpo');
+    const containerMobile = document.getElementById('lista-spese-mobile');
+    
     corpoTabella.innerHTML = '';
+    containerMobile.innerHTML = '';
 
     // Ottieni i valori dei filtri
     const categoriaFiltro = filtroCategoria.value;
@@ -79,6 +82,7 @@ function aggiornaTabella() {
 
     // Mostra le spese filtrate o messaggio se nessuna
     if (speseFiltrate.length === 0) {
+        // Messaggio per desktop
         const riga = document.createElement('tr');
         riga.innerHTML = `
             <td colspan="5" class="text-center text-muted py-4">
@@ -87,7 +91,16 @@ function aggiornaTabella() {
             </td>
         `;
         corpoTabella.appendChild(riga);
+        
+        // Messaggio per mobile
+        containerMobile.innerHTML = `
+            <div class="col-12 text-center text-muted py-4">
+                <i class="bi bi-search me-2 bg-transparent color-s"></i>
+                Nessuna spesa trovata con i filtri applicati.
+            </div>
+        `;
     } else {
+        // Popola tabella desktop
         speseFiltrate.forEach(spesa => {
             const riga = document.createElement('tr');
             riga.innerHTML = `
@@ -105,6 +118,33 @@ function aggiornaTabella() {
                 </td>
             `;
             corpoTabella.appendChild(riga);
+        });
+        
+        // Popola card mobile
+        speseFiltrate.forEach(spesa => {
+            const card = document.createElement('div');
+            card.className = 'col-12';
+            card.innerHTML = `
+                <div class="spesa-card">
+                    <div class="spesa-card-header">
+                        <h6 class="spesa-card-title">${spesa.descrizione}</h6>
+                        <small class="spesa-card-date">${new Date(spesa.data).toLocaleDateString()}</small>
+                    </div>
+                    <div class="spesa-card-body">
+                        <span class="spesa-card-category">${spesa.categoria}</span>
+                        <div class="spesa-card-amount">€ ${spesa.importo.toFixed(2)}</div>
+                    </div>
+                    <div class="spesa-card-actions">
+                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="modificaSpesa(${spesa.id})" title="Modifica">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="rimuoviSpesa(${spesa.id})" title="Elimina">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            containerMobile.appendChild(card);
         });
     }
 

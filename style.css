@@ -19,7 +19,6 @@
     font-family: "Roboto", sans-serif;
     background-color: var(--color-p);
     color: var(--color-t);
-    overflow-x: hidden;
 }
 
 .title{
@@ -54,4 +53,85 @@
     border-radius: 0 0 20px 20px;
     padding: 10px;
     box-sizing: border-box;
+}
+
+/* TABELLA RESPONSIVE */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th, .table td {
+    padding: 0.75rem 0.5rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Pulsanti azioni più piccoli su mobile */
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* MOBILE CARD VIEW */
+.spesa-card {
+    background-color: var(--color-p);
+    border: 1px solid var(--color-s);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.spesa-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.spesa-card-title {
+    font-weight: bold;
+    color: var(--color-a);
+    margin: 0;
+}
+
+.spesa-card-date {
+    font-size: 0.875rem;
+    color: var(--color-s);
+}
+
+.spesa-card-body {
+    margin-bottom: 0.5rem;
+}
+
+.spesa-card-category {
+    display: inline-block;
+    background-color: var(--color-s);
+    color: var(--color-t);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.spesa-card-amount {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-a);
+}
+
+.spesa-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
 }
