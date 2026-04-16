@@ -25,6 +25,28 @@ form.addEventListener('submit', function(e) {
 
     spese.push(nuovaSpesa);
     console.log(spese);
+    aggiornaTabella();
 
     form.reset();
 });
+
+// Funzione per visualizzare le spese
+function aggiornaTabella() {
+    const corpoTabella = document.getElementById('lista-spese-corpo');
+    corpoTabella.innerHTML = '';
+    spese.forEach(spesa => {
+        const riga = document.createElement('tr');
+        riga.innerHTML = `
+            <td>${new Date(spesa.data).toLocaleDateString()}</td>
+            <td>${spesa.descrizione}</td>
+            <td><span class="badge bg-info text-dark">${spesa.categoria}</span></td>
+            <td class="fw-bold">€ ${spesa.importo.toFixed(2)}</td>
+        `;
+        corpoTabella.appendChild(riga);
+    });
+}
+
+// Nel tuo form.addEventListener, aggiungi alla fine:
+// spese.push(nuovaSpesa);
+// aggiornaTabella();
+// form.reset();
